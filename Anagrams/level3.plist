@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>anagrams</key>
+	<array>
+		<array>
+			<array>
+				<array>
+					<string>6</string>
+					<string>5</string>
+				</array>
+				<array>
+					<string>4</string>
+					<string>7</string>
+				</array>
+				<array>
+					<string>7</string>
+					<string>4</string>
+				</array>
+				<array>
+					<string>5</string>
+					<string>6</string>
+				</array>
+			</array>
+			<array>
+				<string>&gt;</string>
+				<string>+</string>
+				<string>&gt;</string>
+				<string>=</string>
+				<string>11</string>
+			</array>
+			<array>
+				<string>5</string>
+				<string>4</string>
+				<string>3</string>
+				<string>6</string>
+				<string>7</string>
+			</array>
+		</array>
+	</array>
+	<key>timeToSolve</key>
+	<integer>300</integer>
+</dict>
+</plist>
