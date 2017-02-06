@@ -48,7 +48,7 @@ class GameController {
     
     self.randomIndex = randomNumber(minX:0, maxX:UInt32(level.anagrams.count-1))
     let anagramPair = level.anagrams[self.randomIndex]
-    let alreadySolved = anagramPair[0] as! Bool
+    //let alreadySolved = anagramPair[0] as! Bool
     
     
     
@@ -220,7 +220,7 @@ class GameController {
     
     //2
 
-
+/*
     
     //3 find the first unmatched target and matching tile
     var foundTarget:TargetView? = nil
@@ -263,9 +263,11 @@ class GameController {
           
           //9 check for finished game
           self.checkForSuccess()
+ 
           
       })
     }
+ */
   }
   
   //clear the tiles and targets
@@ -295,7 +297,7 @@ extension GameController:TileDragDelegateProtocol {
     }
     //self.randomIndex = randomNumber(minX:0, maxX:UInt32(level.anagrams.count-1))
     let anagramPair = level.anagrams[self.randomIndex]
-    let anacont = anagramPair[1] as! Array<String>
+    let anacont = anagramPair[2] as! Array<String>
 
     // wievieltes Leeres Feld es ist und ob es Lösung ist
     if let targetView = targetView {
