@@ -12,7 +12,7 @@ import UIKit
 class GameController {
   var gameView: UIView!
   var level: Level!
-  
+    var withAlwaysCheck: Bool = false
   fileprivate var tiles = [TileView]()
   fileprivate var targets = [TargetView]()
   
@@ -40,6 +40,7 @@ class GameController {
     self.audioController.preloadAudioEffects(AudioEffectFiles)
     self.analös = []
     self.randomIndex = 0
+    
   }
   
   func dealRandomAnagram () {
@@ -84,6 +85,7 @@ class GameController {
         targets.append(target)
         if letter != ">" {
             target.isMatched = true
+            target.isCorrect = true
         }
       }
     }
@@ -119,11 +121,12 @@ class GameController {
 
 
 
-  func placeTile(_ tileView: TileView, targetView: TargetView) {
+    func placeTile(_ tileView: TileView, targetView: TargetView, correct: Bool) {
     //1
     targetView.isMatched = true
     tileView.isMatched = true
-    
+        targetView.isCorrect = correct
+        tileView.isCorrect = correct
     //2
     tileView.isUserInteractionEnabled = false
     
@@ -152,7 +155,7 @@ class GameController {
   func checkForSuccess() {
     for targetView in targets {
       //no success, bail out
-      if !targetView.isMatched {
+      if !targetView.isCorrect {
         return
       }
     }
@@ -297,8 +300,10 @@ extension GameController:TileDragDelegateProtocol {
         break
         
       }
+    
     targetIndex += 1
     }
+    
     //self.randomIndex = randomNumber(minX:0, maxX:UInt32(level.anagrams.count-1))
     let anagramPair = level.anagrams[self.randomIndex]
     let anacont = anagramPair[2] as! Array<String>
@@ -338,7 +343,7 @@ extension GameController:TileDragDelegateProtocol {
       if isSolution == true{
         
         //3
-        self.placeTile(tileView, targetView: targetView)
+        self.placeTile(tileView, targetView: targetView, correct: isSolution)
         var analösKopie: Array<Array<String>> = []
         var remainIndexes: Array<Int> = []
         //noch übrige möglichen Lösungen eingrenzen
@@ -367,8 +372,7 @@ extension GameController:TileDragDelegateProtocol {
       
       } else {
         
-        //4
-        //1
+      /*
         tileView.randomize()
         
         //2
@@ -382,14 +386,22 @@ extension GameController:TileDragDelegateProtocol {
           completion: nil)
         
         //more stuff to do on failure here
+        */
+        self.placeTile(tileView, targetView: targetView, correct: isSolution)
         
-        audioController.playEffect(SoundWrong)
-        
+        audioController.playEffect(SoundDing)
+        self.checkForSuccess()
         //take out points
 
-      }
-    }
+      }//isSolution if
+     }//if Tragetview = tragetview
+    /*}else{
+        self.placeTile(tileView, targetView: targetView!)
+        audioController.playEffect(SoundDing)
+
+        self.checkForSuccess()
     
+    }*/
   }
   
 

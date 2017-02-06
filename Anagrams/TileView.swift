@@ -20,7 +20,7 @@ class TileView:UIImageView {
   
   //3
   var isMatched: Bool = false
-  
+    var isCorrect:Bool = false
   fileprivate var xOffset: CGFloat = 0.0
   fileprivate var yOffset: CGFloat = 0.0
   

@@ -13,7 +13,7 @@ class TargetView: UIImageView {
   var letter: String
     //var printletter: Character
   var isMatched:Bool = false
-  
+  var isCorrect:Bool = false
   //this should never be called
   required init(coder aDecoder:NSCoder) {
     fatalError("use init(letter:, sideLength:")
