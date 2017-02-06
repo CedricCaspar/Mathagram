@@ -217,7 +217,9 @@ class GameController {
   @objc func actionHint() {
     //1
     hud.hintButton.isEnabled = false
-    
+    self.stopStopwatch()
+    self.clearBoard()
+    self.dealRandomAnagram()
     //2
 
 /*
@@ -285,6 +287,8 @@ class GameController {
 extension GameController:TileDragDelegateProtocol {
   //a tile was dragged, check if matches a target
   func tileView(_ tileView: TileView, didDragToPoint point: CGPoint) {
+    
+    
     var targetView: TargetView?
     var targetIndex = 0
     for tv in targets {
