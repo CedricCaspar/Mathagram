@@ -9,31 +9,24 @@
 import Foundation
 import UIKit
 
-//UI Constants
 let ScreenWidth = UIScreen.main.bounds.size.width
 let ScreenHeight = UIScreen.main.bounds.size.height
 
-
-
-//Random number generator
 func randomNumber(minX:UInt32, maxX:UInt32) -> Int {
   let result = (arc4random() % (maxX - minX + 1)) + minX
   return Int(result)
 }
 func randomNumberLessOne(minX:UInt32, maxX:UInt32) -> Int {
     let maxX = maxX - 1
-    
     let result = (arc4random() % (maxX - minX + 1)) + minX
     return Int(result)
 }
-
 
 let TileMargin: CGFloat = 20.0
 
 let FontHUD = UIFont(name:"comic andy", size: 62.0)!
 let FontHUDBig = UIFont(name:"comic andy", size:120.0)!
 
-// Sound effects
 let SoundDing = "ding.mp3"
 let SoundWrong = "wrong.m4a"
 let SoundWin = "win.mp3"

@@ -19,7 +19,6 @@ class StardustView:UIView {
   
   override init(frame:CGRect) {
     super.init(frame:frame)
-    //initialize the emitter
     emitter = self.layer as! CAEmitterLayer
     emitter.emitterPosition = CGPoint(x: self.bounds.size.width/2, y: self.bounds.size.height/2)
     emitter.emitterSize = self.bounds.size
@@ -28,7 +27,6 @@ class StardustView:UIView {
   }
   
   override class var layerClass : AnyClass {
-    //configure the UIView to have emitter layer
     return CAEmitterLayer.self
   }
   
@@ -37,12 +35,9 @@ class StardustView:UIView {
     if self.superview == nil {
       return
     }
-    
-    //load the texture image
     let texture:UIImage? = UIImage(named:"particle")
     assert(texture != nil, "particle image not found")
     
-    //create new emitter cell
     let emitterCell = CAEmitterCell()
     emitterCell.contents = texture!.cgImage
     emitterCell.name = "cell"
