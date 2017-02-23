@@ -9,35 +9,28 @@
 import UIKit
 
 class ViewController: UIViewController {
-  
-  fileprivate let controller:GameController
-    
-  fileprivate let amountOfLevels: Int = 10
 
+  fileprivate let amountOfLevels: Int = 4
+
+  fileprivate let controller:GameController
     
   required init?(coder aDecoder: NSCoder) {
     controller = GameController()
     super.init(coder: aDecoder)
-    
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    //add one layer for all game elements
     let gameView = UIView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight))
     self.view.addSubview(gameView)
     controller.gameView = gameView
 
-    //add one view for all hud and controls
     let hudView = HUDView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight))
     self.view.addSubview(hudView)
     controller.hud = hudView
-
     controller.onAnagramSolved = self.showLevelMenu
   }
   
-  //show the game menu on app start
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     self.showLevelMenu()
@@ -45,7 +38,6 @@ class ViewController: UIViewController {
 
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
   }
 
   override var prefersStatusBarHidden : Bool {
@@ -53,47 +45,30 @@ class ViewController: UIViewController {
   }
 
   func showLevelMenu() {
-    //1 show the level selector menu
     let alertController = UIAlertController(title: "Choose Level",
       message: nil,
       preferredStyle:UIAlertControllerStyle.alert)
     for level in 1 ... amountOfLevels {
+        if level <= 5{
         let oneLevel = UIAlertAction(title: "Level \(level)", style:.default,
                                  handler: {(alert:UIAlertAction!) in
                                     self.showLevel(level)})
     
     alertController.addAction(oneLevel)
-    
+        }else{
+            let zweiLevel = UIAlertAction(title: "Level \(level)", style:.default,
+                                         handler: {(alert:UIAlertAction!) in
+                                            self.showLevel(5)})
+            
+            alertController.addAction(zweiLevel)
+        }
     }
-        /*
-    //2 set up the menu actions
-    let easy = UIAlertAction(title: "Easy-peasy", style:.default,
-      handler: {(alert:UIAlertAction!) in
-        self.showLevel(1)
-    })
-    let hard = UIAlertAction(title: "Challenge accepted", style:.default,
-      handler: {(alert:UIAlertAction!) in
-        self.showLevel(2)
-    })
-    let hardest = UIAlertAction(title: "I'm totally hard-core", style: .default,
-      handler: {(alert:UIAlertAction!) in
-        self.showLevel(3)
-    })
-    
-    //3 add the menu actions to the menu
-    alertController.addAction(easy)
-    alertController.addAction(hard)
-    alertController.addAction(hardest)
-    */
-    //4 show the UIAlertController
     self.present(alertController, animated: true, completion: nil)
   }
   
-  //5 show the appropriate level selected by the player
   func showLevel(_ levelNumber:Int) {
     controller.level = Level(levelNumber: levelNumber)
     controller.dealRandomAnagram()
   }
-  
 }
 

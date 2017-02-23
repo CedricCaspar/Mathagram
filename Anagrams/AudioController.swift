@@ -14,30 +14,20 @@ class AudioController {
   
   func preloadAudioEffects(_ effectFileNames:[String]) {
     for effect in AudioEffectFiles {
-      //1 get the file path URL
-      // ML
       let soundPath = Bundle.main.resourcePath!.stringByAppendingPathComponent(pathComponent: effect)
       let soundURL = URL(fileURLWithPath: soundPath)
-      
-      //2 load the file contents
-      //var loadError:NSError?
+
         var player: AVAudioPlayer?
         do {
             player = try AVAudioPlayer(contentsOf: soundURL)
             guard let player = player else { return }
-            
             player.prepareToPlay()
             player.play()
             } catch let error {
                 print(error.localizedDescription)
             }
-      //assert(loadError == nil, "Load sound failed")
-      
-      //3 prepare the play
       player?.numberOfLoops = 0
       player?.prepareToPlay()
-      
-      //4 add to the audio dictionary
       audio[effect] = player
     }
   }
